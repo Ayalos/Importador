@@ -27,7 +27,7 @@ namespace ImportMtoH.classes
             ObjConexao.Desconectar();
             UpdateEmp();
         }
-        public void UpdateEmp()
+        private void UpdateEmp()
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = ObjConexao.ObjetoConexao;
@@ -39,7 +39,7 @@ namespace ImportMtoH.classes
             ObjConexao.Desconectar();
             UpdateConfEmp();
         }
-        public void UpdateConfEmp()
+        private void UpdateConfEmp()
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = ObjConexao.ObjetoConexao;
@@ -64,7 +64,7 @@ namespace ImportMtoH.classes
             ObjConexao.Desconectar();
             UpdateFilial();
         }
-        public void UpdateFilial()
+        private void UpdateFilial()
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = ObjConexao.ObjetoConexao;
@@ -81,7 +81,7 @@ namespace ImportMtoH.classes
             ObjConexao.Desconectar();
             UpdateConfFilial();
         }
-        public void UpdateConfFilial()
+        private void UpdateConfFilial()
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = ObjConexao.ObjetoConexao;

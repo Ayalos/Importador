@@ -18,13 +18,13 @@
          MinHeight="320" MinWidth="280" MaxHeight="320" MaxWidth="280" Foreground="#DD3F3F46" WindowStyle="ToolWindow" HorizontalAlignment="Center" VerticalAlignment="Center" WindowStartupLocation="CenterScreen">
 
     <Grid Background="White" Margin="0,0,0,0">
-        <StackPanel Margin="0,10,0,250">
-            <Label Content="O que deseja importar?" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Arial" FontWeight="Bold"/>
+        <StackPanel Margin="0,5,0,250">
+            <Label Content="O que deseja importar?" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Arial" FontWeight="Bold" FontSize="18"/>
         </StackPanel>
 
         <StackPanel Margin="0,0,136,70">
-            <CheckBox Name="checkHiper"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Hiper Legado" Margin="10,80,0,-24" Click="CheckHiper_Click"/>
-            <CheckBox Name="checkHiperMini"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="HiperMini" Margin="10,40,0,-24"/>
+            <CheckBox Name="checkHiper"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Hiper Legado" Margin="10,80,0,-24" Click="CheckHiper_Click" />
+            <CheckBox Name="checkHiperMini"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="HiperMini" Margin="10,40,0,-24" Click="CheckHiperMini_Click"/>
 
         </StackPanel>
 
@@ -36,8 +36,8 @@
             <CheckBox Name="checkProd"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Produtos" Margin="0,30,0,-24" Visibility="Hidden"/>
             <CheckBox Name="checkDoc"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Documentos" Margin="0,30,0,-24" Visibility="Hidden"/>
             <!-- Opções para o Hiper Mini -->
-            <CheckBox Name="checkMiniEnt"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Entidade" Margin="0,-90,0,-24" Visibility="Hidden"/>
-            <CheckBox Name="checkMiniProd"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Produtos" Margin="0,-40,0,-24" Visibility="Hidden"/>
+            <CheckBox Name="checkMiniEnt"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Entidade" Margin="0,-90,0,-24" Visibility="Hidden" Height="24"/>
+            <CheckBox Name="checkMiniProd"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Produtos" Margin="0,-40,0,-24" Visibility="Hidden" Height="23"/>
         </StackPanel>
         
         <StackPanel Margin="0,180,140,60">
@@ -67,80 +67,5 @@
         <StackPanel Margin="0,230,0,10">
             <Button Name="btnImport" Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonProgressAssist.Value="-1" materialDesign:ButtonProgressAssist.IsIndicatorVisible="True" materialDesign:ButtonProgressAssist.IsIndeterminate="True" Content="IMPORTAR" Margin="40,10,40,0" Background="#FF1333F7" BorderBrush="Black" />
         </StackPanel>
-        <!--><StackPanel Background="White">
-            <Grid HorizontalAlignment="Center" Margin="0,20,0,-20">
-                <Label Content="O que deseja importar ?" HorizontalAlignment="Center" FontSize="16" Margin="0,-17,0,16" />
-            </Grid>
-            <Grid Margin="32,-4,0,0">
-                <CheckBox Name="checkFilial"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Filial" Margin="0,24,0,-24"/>
-            </Grid>
-
-            <Grid Margin="32,-20,0,0">
-                <CheckBox Name="checkProd" Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Produtos" Margin="0,52,0,-52"/>
-            </Grid>
-            <Grid Margin="32,20,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="47*"/>
-                    <ColumnDefinition Width="193*"/>
-                </Grid.ColumnDefinitions>
-                <CheckBox Name="checkEntidade"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Clientes/Fonercedores" Margin="0,42,0,-42" Grid.ColumnSpan="2"/>
-            </Grid>
-            <Grid Margin="32,20,0,0" Height="26">
-                <CheckBox Name="checkDoc" Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False"  Content="Documentos Pagar/Receber" Margin="0,28,0,-28"/>
-            </Grid>
-            <Grid Margin="35,-100,35,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="51*"/>
-                    <ColumnDefinition Width="71*"/>
-                    <ColumnDefinition Width="80*"/>
-                </Grid.ColumnDefinitions>
-                <TextBox
-  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Name="lblNomeServe" Margin="0,135,14,-70" Grid.ColumnSpan="2">
-                    <materialDesign:HintAssist.Hint>
-                        <StackPanel
-      Orientation="Horizontal"
-      Margin="-2 0 0 0">
-                            <materialDesign:PackIcon
-        Kind="Database" />
-                            <TextBlock>
-      Nome Servidor
-                            </TextBlock>
-                        </StackPanel>
-                    </materialDesign:HintAssist.Hint>
-                </TextBox>
-            </Grid>
-            <Grid Margin="35,30,35,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="69*"/>
-                    <ColumnDefinition Width="82*"/>
-                    <ColumnDefinition Width="51*"/>
-                </Grid.ColumnDefinitions>
-                <TextBox
-  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Name="lblInstancia" Margin="46,3,0,-15" Grid.Column="1" Grid.ColumnSpan="2">
-                    <materialDesign:HintAssist.Hint>
-                        <StackPanel
-      Orientation="Horizontal"
-      Margin="-2 0 0 0">
-                            <materialDesign:PackIcon
-        Kind="Database" />
-                            <TextBlock>
-                                Instancia
-                            </TextBlock>
-                        </StackPanel>
-                    </materialDesign:HintAssist.Hint>
-                </TextBox>
-
-            </Grid>
-
-            <Grid Margin="124,30,124,0">
-                <Button
-                    Style="{StaticResource MaterialDesignRaisedButton}"
-                    materialDesign:ButtonProgressAssist.Value="2"
-                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
-                    materialDesign:ButtonProgressAssist.IsIndeterminate="False"
-                    Content="Importar" Name="btnImport"
-                    Margin="-95,0,-85,0" Background="#FF8DBEDA" BorderBrush="{x:Null}" Foreground="#DD000000" Click="btnImport_Click_1"  />
-            </Grid>
-        </StackPanel><-->
     </Grid>
 </Window>

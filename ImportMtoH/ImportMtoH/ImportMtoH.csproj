@@ -91,6 +91,8 @@
     <Compile Include="classes\ImportacaoEnti.cs" />
     <Compile Include="classes\ImportacaoFilial.cs" />
     <Compile Include="classes\ImportacaoProd.cs" />
+    <Compile Include="classes\ImportMiniEnti.cs" />
+    <Compile Include="classes\ImportMiniProd.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

@@ -45,7 +45,7 @@ namespace ImportMtoH.classes
             InserMarca();
         }
 
-        public void InserMarca()
+        private void InserMarca()
         {
             SqlCommand com = new SqlCommand();
             
@@ -67,7 +67,7 @@ namespace ImportMtoH.classes
             InserHier();
            
         }
-        public void InserHier()
+        private void InserHier()
         {
             SqlCommand com = new SqlCommand();
 
@@ -81,7 +81,7 @@ namespace ImportMtoH.classes
             objConexao.Desconectar();
             InserTabelaVar();
         }
-        public void InserTabelaVar()
+        private void InserTabelaVar()
         {
             SqlCommand com = new SqlCommand();
 
@@ -102,7 +102,7 @@ namespace ImportMtoH.classes
             objConexao.Desconectar();
             InserProd();
         }
-        public void InserProd()
+        private void InserProd()
         {
             SqlCommand com = new SqlCommand();
 
@@ -133,7 +133,7 @@ namespace ImportMtoH.classes
             objConexao.Desconectar();
             InserProdSin();
         }
-        public void InserProdSin()
+        private void InserProdSin()
         {
             SqlCommand com = new SqlCommand();
 
@@ -151,7 +151,7 @@ namespace ImportMtoH.classes
             objConexao.Desconectar();
             InserProdForn();
         }
-        public void InserProdForn()
+        private void InserProdForn()
         {
             SqlCommand com = new SqlCommand();
 
@@ -167,7 +167,7 @@ namespace ImportMtoH.classes
             objConexao.Desconectar();
             InserProdNumSer();
         }
-        public void InserProdNumSer()
+        private void InserProdNumSer()
         {
             SqlCommand com = new SqlCommand();
 
@@ -180,7 +180,7 @@ namespace ImportMtoH.classes
             objConexao.Desconectar();
             InserItemTabVar();
         }
-        public void InserItemTabVar()
+        private void InserItemTabVar()
         {
             SqlCommand com = new SqlCommand();
 
@@ -195,7 +195,7 @@ namespace ImportMtoH.classes
             objConexao.Desconectar();
             InserProdVar();
         }
-        public void InserProdVar()
+        private void InserProdVar()
         {
             SqlCommand com = new SqlCommand();
 
@@ -209,7 +209,7 @@ namespace ImportMtoH.classes
             objConexao.Desconectar();
             InserSalEsto();
         }
-        public void InserSalEsto()
+        private void InserSalEsto()
         {
             SqlCommand com = new SqlCommand();
 
@@ -220,7 +220,7 @@ namespace ImportMtoH.classes
             objConexao.Desconectar();
             InserSalEstoqueDiar();
         }
-        public void InserSalEstoqueDiar()
+        private void InserSalEstoqueDiar()
         {
             SqlCommand com = new SqlCommand();
 
@@ -232,7 +232,7 @@ namespace ImportMtoH.classes
             objConexao.Desconectar();
             InserHierar();
         }
-        public void InserHierar()
+        private void InserHierar()
         {
             SqlCommand com = new SqlCommand();
 

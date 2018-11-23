@@ -33,7 +33,7 @@ namespace ImportMtoH.classes
             ImportUsu();
         }
         
-        public void ImportUsu()
+        private void ImportUsu()
         {
             SqlCommand cmd = new SqlCommand();
 
@@ -50,7 +50,7 @@ namespace ImportMtoH.classes
             ObjConexao.Desconectar();
             ImportEnti();
         }
-        public void ImportEnti()
+        private void ImportEnti()
         {
             SqlCommand cmd = new SqlCommand();
 
@@ -79,7 +79,7 @@ namespace ImportMtoH.classes
             ObjConexao.Desconectar();
             ImportFili();
         }
-        public void ImportFili()
+        private void ImportFili()
         {
             SqlCommand cmd = new SqlCommand();
 
@@ -93,7 +93,7 @@ namespace ImportMtoH.classes
             ObjConexao.Desconectar();
             ImportPessFis();
         }
-        public void ImportPessFis()
+        private void ImportPessFis()
         {
             SqlCommand cmd = new SqlCommand();
 
@@ -109,7 +109,7 @@ namespace ImportMtoH.classes
             ObjConexao.Desconectar();
             ImportPessJur();
         }
-        public void ImportPessJur()
+        private void ImportPessJur()
         {
             SqlCommand cmd = new SqlCommand();
 
@@ -125,7 +125,7 @@ namespace ImportMtoH.classes
             ObjConexao.Desconectar();
             InserEntidadeFilial();
         }
-        public void InserEntidadeFilial()
+        private void InserEntidadeFilial()
         {
             SqlCommand cmd = new SqlCommand();
 

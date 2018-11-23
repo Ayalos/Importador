@@ -28,7 +28,7 @@ namespace ImportMtoH.classes
             ImportTiDoFi();
 
         }
-        public void ImportTiDoFi()
+        private void ImportTiDoFi()
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = ObjConexao.ObjetoConexao;
@@ -46,7 +46,7 @@ namespace ImportMtoH.classes
             ObjConexao.Desconectar();
             ImportDocRec();
         }
-        public void ImportDocRec()
+        private void ImportDocRec()
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = ObjConexao.ObjetoConexao;
@@ -72,7 +72,7 @@ namespace ImportMtoH.classes
             ObjConexao.Desconectar();
             ImportDocPag();
         }
-        public void ImportDocPag()
+        private void ImportDocPag()
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = ObjConexao.ObjetoConexao;
@@ -97,7 +97,7 @@ namespace ImportMtoH.classes
             ObjConexao.Desconectar();
             UpdateCentro();
         }
-        public void UpdateCentro()
+        private void UpdateCentro()
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = ObjConexao.ObjetoConexao;
@@ -112,7 +112,7 @@ namespace ImportMtoH.classes
             ObjConexao.Desconectar();
             ImportCentro();
         }
-        public void ImportCentro()
+        private void ImportCentro()
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = ObjConexao.ObjetoConexao;

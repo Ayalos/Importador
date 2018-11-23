@@ -35,7 +35,7 @@ namespace ImportMtoH.classes
             ObjConexao.Desconectar();
             InserConfFilial();
         }
-        public void InserConfFilial()
+        private void InserConfFilial()
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = ObjConexao.ObjetoConexao;
