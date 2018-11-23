@@ -18,7 +18,56 @@
          MinHeight="320" MinWidth="280" MaxHeight="320" MaxWidth="280" Foreground="#DD3F3F46" WindowStyle="ToolWindow" HorizontalAlignment="Center" VerticalAlignment="Center" WindowStartupLocation="CenterScreen">
 
     <Grid Background="White" Margin="0,0,0,0">
-        <StackPanel Background="White">
+        <StackPanel Margin="0,10,0,250">
+            <Label Content="O que deseja importar?" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Arial" FontWeight="Bold"/>
+        </StackPanel>
+
+        <StackPanel Margin="0,0,136,70">
+            <CheckBox Name="checkHiper"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Hiper Legado" Margin="10,80,0,-24" Click="CheckHiper_Click"/>
+            <CheckBox Name="checkHiperMini"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="HiperMini" Margin="10,40,0,-24"/>
+
+        </StackPanel>
+
+        <StackPanel Margin="136,0,0,70">
+
+            <!-- Opções para o Hiper Legado -->
+            <CheckBox Name="checkFilial"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Filial" Margin="0,60,0,-24" Visibility="Hidden"/>
+            <CheckBox Name="checkEntidade"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Entidade" Margin="0,30,0,-24" Visibility="Hidden"/>
+            <CheckBox Name="checkProd"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Produtos" Margin="0,30,0,-24" Visibility="Hidden"/>
+            <CheckBox Name="checkDoc"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Documentos" Margin="0,30,0,-24" Visibility="Hidden"/>
+            <!-- Opções para o Hiper Mini -->
+            <CheckBox Name="checkMiniEnt"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Entidade" Margin="0,-90,0,-24" Visibility="Hidden"/>
+            <CheckBox Name="checkMiniProd"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Produtos" Margin="0,-40,0,-24" Visibility="Hidden"/>
+        </StackPanel>
+        
+        <StackPanel Margin="0,180,140,60">
+            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="5,0,0,0" Name="lblNomeServe">
+                <materialDesign:HintAssist.Hint>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Database" />
+                        <TextBlock>
+                            Nome Servidor
+                        </TextBlock>
+                    </StackPanel>
+                </materialDesign:HintAssist.Hint>
+            </TextBox>
+        </StackPanel>
+        <StackPanel Margin="140,180,0,60">
+            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,0,5,0" Name="lblInstancia">
+                <materialDesign:HintAssist.Hint>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Database" />
+                        <TextBlock>
+                            Nome Instância
+                        </TextBlock>
+                    </StackPanel>
+                </materialDesign:HintAssist.Hint>
+            </TextBox>
+        </StackPanel>
+        <StackPanel Margin="0,230,0,10">
+            <Button Name="btnImport" Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonProgressAssist.Value="-1" materialDesign:ButtonProgressAssist.IsIndicatorVisible="True" materialDesign:ButtonProgressAssist.IsIndeterminate="True" Content="IMPORTAR" Margin="40,10,40,0" Background="#FF1333F7" BorderBrush="Black" />
+        </StackPanel>
+        <!--><StackPanel Background="White">
             <Grid HorizontalAlignment="Center" Margin="0,20,0,-20">
                 <Label Content="O que deseja importar ?" HorizontalAlignment="Center" FontSize="16" Margin="0,-17,0,16" />
             </Grid>
@@ -92,6 +141,6 @@
                     Content="Importar" Name="btnImport"
                     Margin="-95,0,-85,0" Background="#FF8DBEDA" BorderBrush="{x:Null}" Foreground="#DD000000" Click="btnImport_Click_1"  />
             </Grid>
-        </StackPanel>
+        </StackPanel><-->
     </Grid>
 </Window>

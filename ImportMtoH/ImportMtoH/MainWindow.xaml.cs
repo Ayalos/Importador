@@ -112,5 +112,10 @@ namespace ImportMtoH
         {
            
         }
+
+        private void CheckHiper_Click(object sender, RoutedEventArgs e)
+        {
+            checkFilial.Visibility;
+        }
     }
 }
