@@ -65,7 +65,7 @@
             </TextBox>
         </StackPanel>
         <StackPanel Margin="0,230,0,10">
-            <Button Name="btnImport" Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonProgressAssist.Value="-1" materialDesign:ButtonProgressAssist.IsIndicatorVisible="True" materialDesign:ButtonProgressAssist.IsIndeterminate="True" Content="IMPORTAR" Margin="40,10,40,0" Background="#FF1333F7" BorderBrush="Black" />
+            <Button Name="btnImport" Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonProgressAssist.Value="-1" materialDesign:ButtonProgressAssist.IsIndicatorVisible="True" materialDesign:ButtonProgressAssist.IsIndeterminate="True" Content="IMPORTAR" Margin="40,10,40,0" Background="#FF1333F7" BorderBrush="Black" Click="btnImport_Click_1"/>
         </StackPanel>
     </Grid>
 </Window>
