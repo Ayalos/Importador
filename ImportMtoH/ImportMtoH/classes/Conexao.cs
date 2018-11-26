@@ -85,13 +85,5 @@ namespace ImportMtoH.classes
             this._conexao.Close();
 
         }
-
-        /*public void InfoBanco(BancoInfo info)
-        {
-            this.NomeServe = info.NomeServidor1;
-            this.Instancia = info.Instancia1;
-        }*/
-       
-
     }
 }
