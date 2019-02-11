@@ -48,7 +48,9 @@ namespace ImportMtoH.classes
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = ObjConexao.ObjetoConexao;
 
-            cmd.CommandText = "UPDATE Lojamix.dbo.configuracao_empresa SET id_empresa=confemp.id_empresa, id_cme_venda=confemp.id_cme_venda,id_cme_devolucao=confemp.id_cme_devolucao, " +
+            cmd.CommandText = "alter table lojamix.dbo.configuracao_empresa " +
+                "nocheck constraint all " +
+                "UPDATE Lojamix.dbo.configuracao_empresa SET id_empresa=confemp.id_empresa, id_cme_venda=confemp.id_cme_venda,id_cme_devolucao=confemp.id_cme_devolucao, " +
 "qtd_maxima_movim_estoque = confemp.qtd_maxima_movim_estoque,id_nop_faturamento_icms_normal = 3, id_nop_faturamento_icms_st = 7," +
 "id_nop_faturamento_pdv_icms_normal = confemp.id_nop_faturamento_pdv_icms_normal, id_nop_faturamento_pdv_icms_st = confemp.id_nop_faturamento_pdv_icms_st, " +
 "id_tipo_documento_financeiro_faturamento_pedido_venda = confemp.id_tipo_documento_financeiro_faturamento_pedido_venda, id_tipo_documento_financeiro_cheque = confemp.id_tipo_documento_financeiro_cheque, " +
@@ -61,7 +63,9 @@ namespace ImportMtoH.classes
 "id_cfop_faturamento_pdv_icms_st = 5405, id_cfop_faturamento_pdv_icms_normal = 5102, id_nop_ordem_servico_dentro_uf = 3, id_nop_ordem_servico_fora_uf = 5, id_cme_entrada_reserva = NULL, " +
 "id_cme_saida_reserva = NULL, id_nop_consignacao_entrada = NULL, id_nop_consignacao_saida = NULL, id_conta_contabil_pendencia = NULL, id_conta_contabil_cheque = NULL, " +
 "usar_ean_padrao = 0, cod_pais_ean_padrao = NULL, cod_empresa_ean_padrao = NULL, id_nop_devolucao_compra = NULL, id_conta_contabil_cartao_credito = NULL, " +
-"id_tipo_documento_financeiro_cartao_credito = 3 , integrar_cartao_credito_pdv_no_financeiro = 0 FROM Hiper.dbo.configuracao_empresa AS confemp";
+"id_tipo_documento_financeiro_cartao_credito = 3 , integrar_cartao_credito_pdv_no_financeiro = 0 FROM Hiper.dbo.configuracao_empresa AS confemp " +
+"alter table lojamix.dbo.configuracao_empresa " +
+"check constraint all";
 
             ObjConexao.Conectar();
             cmd.ExecuteScalar();
