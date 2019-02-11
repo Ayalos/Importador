@@ -85,9 +85,13 @@ namespace ImportMtoH.classes
 
             cmd.Connection = ObjConexao.ObjetoConexao;
 
-            cmd.CommandText = "INSERT INTO Lojamix.dbo.usuario_filial " +
+            cmd.CommandText = "ALTER TABLE LOJAMIX.DBO.USUARIO_FILIAL " +
+                "NOCHECK CONSTRAINT ALL " +
+                "INSERT INTO Lojamix.dbo.usuario_filial " +
                               "SELECT * FROM Hiper.dbo.usuario_filial " +
-                              "WHERE id_usuario <> 1";
+                              "WHERE id_usuario <> 1 " +
+                              "ALTER TABLE LOJAMIX.DBO.USUARIO_FILIAL " +
+                              "CHECK CONSTRAINT ALL";
             ObjConexao.Conectar();
             cmd.ExecuteScalar();
             ObjConexao.Desconectar();
@@ -131,9 +135,13 @@ namespace ImportMtoH.classes
 
             cmd.Connection = ObjConexao.ObjetoConexao;
 
-            cmd.CommandText = "insert into Lojamix.dbo.entidade_filial (id_entidade, id_filial) "+
+            cmd.CommandText = "ALTER TABLE LOJAMIX.DBO.ENTIDADE_FILIAL " +
+                "NOCHECK CONSTRAINT ALL " +
+                "insert into Lojamix.dbo.entidade_filial (id_entidade, id_filial) "+
                         "select entidade.id_entidade, filial.id_filial from Lojamix.dbo.entidade "+
-                        "CROSS JOIN Lojamix.dbo.filial";
+                        "CROSS JOIN Lojamix.dbo.filial " +
+                        "ALTER TABLE LOJAMIX.DBO.ENTIDADE_FILIAL " +
+                        "CHECK CONSTRAINT ALL";
             ObjConexao.Conectar();
             cmd.ExecuteScalar();
             ObjConexao.Desconectar();
