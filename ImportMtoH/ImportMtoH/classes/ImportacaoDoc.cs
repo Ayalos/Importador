@@ -33,14 +33,18 @@ namespace ImportMtoH.classes
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = ObjConexao.ObjetoConexao;
 
-            cmd.CommandText = "SET IDENTITY_INSERT Lojamix.dbo.tipo_documento_financeiro ON "+
+            cmd.CommandText = "SET IDENTITY_INSERT Lojamix.dbo.tipo_documento_financeiro ON " +
+                "ALTER TABLE LOJAMIX.DBO.TIPO_DOCUMENTO_FINANCEIRO " +
+                "NOCHECK CONSTRAINT ALL "+
 "INSERT INTO Lojamix.dbo.tipo_documento_financeiro( "+
 "id_tipo_documento_financeiro, nome, inativo, id_tipo_lancamento_financeiro_abertura, id_tipo_lancamento_financeiro_quitacao, tipo_titulo_credito, "+
 "permite_recebimento_pdv, id_tipo_lancamento_financeiro_acrescimo, id_tipo_lancamento_financeiro_desconto) "+
 "SELECT id_tipo_documento_financeiro, nome, inativo, id_tipo_lancamento_financeiro_abertura, id_tipo_lancamento_financeiro_quitacao, "+
 "tipo_titulo_credito, permite_recebimento_pdv, id_tipo_lancamento_financeiro_acrescimo, 2 "+
 "FROM Hiper.dbo.tipo_documento_financeiro where id_tipo_documento_financeiro > 4 "+
-"SET IDENTITY_INSERT Lojamix.dbo.tipo_documento_financeiro OFF";
+"SET IDENTITY_INSERT Lojamix.dbo.tipo_documento_financeiro OFF " +
+"ALTER TABLE LOJAMIX.DBO.TIPO_DOCUMENTO_FINANCEIRO " +
+"CHECK CONSTRAINT ALL";
             ObjConexao.Conectar();
             cmd.ExecuteScalar();
             ObjConexao.Desconectar();
@@ -117,7 +121,11 @@ namespace ImportMtoH.classes
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = ObjConexao.ObjetoConexao;
 
-            cmd.CommandText = "INSERT INTO Lojamix.dbo.centro_custo SELECT id_centro_custo,nome,id_centro_custo_pai,sequencia FROM Hiper.dbo.centro_custo AS custo where custo.id_centro_custo <> '1'";
+            cmd.CommandText = "ALTER TABLE LOJAMIX.DBO.CENTRO_CUSTO " +
+                "NOCHECK CONSTRAINT ALL " +
+                "INSERT INTO Lojamix.dbo.centro_custo SELECT id_centro_custo,nome,id_centro_custo_pai,sequencia FROM Hiper.dbo.centro_custo AS custo where custo.id_centro_custo <> '1' " +
+                "ALTER TABLE LOJAMIX.DBO.CENTRO_CUSTO " +
+                "CHECK CONSTRAINT ALL";
 
             ObjConexao.Conectar();
             cmd.ExecuteScalar();
