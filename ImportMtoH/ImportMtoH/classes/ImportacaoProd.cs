@@ -135,7 +135,7 @@ namespace ImportMtoH.classes
                             "FROM Hiper.dbo.produto "+
                             "SET IDENTITY_INSERT Lojamix.dbo.produto OFF " +
                             "ALTER TABLE LOJAMIX.DBO.PRODUTO " +
-                            "CHECKI CONSTRAINT ALL";
+                            "CHECK CONSTRAINT ALL";
             objConexao.Conectar();
             com.ExecuteScalar();
             objConexao.Desconectar();
@@ -167,7 +167,7 @@ namespace ImportMtoH.classes
 
             com.CommandText = "SET IDENTITY_INSERT Lojamix.dbo.produto_fornecedor ON " +
                 "ALTER TABLE LOJAMIX.DBO.PRODUTO_FORNECEDOR " +
-                "NOCHECK CONSTRAINT ALL "+
+                "NOCHECK CONSTRAINT ALL " +
                             "INSERT INTO Lojamix.dbo.produto_fornecedor(id_produto_fornecedor, id_entidade, id_produto, principal, ativo, observacao, ultimo_preco_aquisicao, data_alteracao_ultimo_preco, codigo_importacao) "+
                             "SELECT id_produto_fornecedor, id_entidade, id_produto,1,1,NULL,0.00, NULL, NULL "+
                                 "FROM Hiper.dbo.produto_fornecedor "+
@@ -187,7 +187,7 @@ namespace ImportMtoH.classes
 
             com.CommandText = "ALTER TABLE LOJAMIX.DBO.PRODUTO_NUMERO_SERIE " +
                 "NOCHECK CONSTRAINT ALL " +
-                "INSERT INTO Lojamix.dbo.produto_numero_serie(id_produto,id_variacao,numero_serie,id_endereco_estoque) "+
+                "INSERT INTO Lojamix.dbo.produto_numero_serie(id_produto,id_variacao,numero_serie,id_endereco_estoque) " +
                                 "select id_produto, id_variacao, numero_serie, id_endereco_estoque from Hiper.dbo.produto_numero_serie " +
                                 "ALTER TABLE LOJAMIX.DBO.PRODUTO_NUMERO_SERIE " +
                                 "CHECK CONSTRAINT ALL";
@@ -223,7 +223,7 @@ namespace ImportMtoH.classes
 
             com.CommandText = "ALTER TABLE LOJAMIX.DBO.PRODUTO_VARIACAO " +
                 "NOCHECK CONSTRAINT ALL " +
-                "INSERT INTO Lojamix.dbo.produto_variacao "+
+                "INSERT INTO Lojamix.dbo.produto_variacao " +
                                 "Select id_produto, id_variacao, nome, situacao, id_item_tabela_variacao_a, id_item_tabela_variacao_b, referencia_interna_variacao,"+
                                 "nome_variacao_a, nome_variacao_b, NULL, NULL, NULL, NULL, NULL, NULL FROM Hiper.dbo.produto_variacao " +
                                 "ALTER TABLE LOJAMIX.DBO.PRODUTO_VARIACAO " +
