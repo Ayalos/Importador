@@ -276,6 +276,20 @@ namespace ImportMtoH.classes
             objConexao.Conectar();
             com.ExecuteScalar();
             objConexao.Desconectar();
+            InserCadastro();
+        }
+        private void InserCadastro()
+        {
+            SqlCommand com = new SqlCommand();
+            com.Connection = objConexao.ObjetoConexao;
+            com.CommandText = "ALTER TABLE LOJAMIX.DBO.CADASTRO_LOGISTICO_PRODUTO " +
+                "NOCHECK CONSTRAINT ALL " +
+                "INSERT INTO Lojamix.dbo.cadastro_logistico_produto SELECT sigla_unidade_logistica,id_produto,10,multiplicador,0 FROM Hiper.dbo.cadastro_logistico_produto " +
+                "ALTER TABLE LOJAMIX.DBO.CADASTRO_LOGISTICO_PRODUTO " +
+                "CHECK CONSTRAINT ALL";
+            objConexao.Conectar();
+            com.ExecuteScalar();
+            objConexao.Desconectar();
         }
     }
 }
