@@ -100,7 +100,7 @@ namespace ImportMtoH.classes
                                 "where id_tabela_variacao != 1 and id_tabela_variacao != 2)" +
                                 "SET IDENTITY_INSERT Lojamix.dbo.tabela_variacao OFF " +
                                 "ALTER TABLE LOJAMIX.DBO.TABELA_variacao " +
-                                    "NOCHECK Constraint ALL";
+                                    "CHECK Constraint ALL";
             objConexao.Conectar();
             com.ExecuteScalar();
             objConexao.Desconectar();

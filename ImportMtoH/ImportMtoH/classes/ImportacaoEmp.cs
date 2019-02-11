@@ -19,8 +19,12 @@ namespace ImportMtoH.classes
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = ObjConexao.ObjetoConexao;
 
-            cmd.CommandText = "INSERT INTO Lojamix.dbo.cme select id_cme,nome,operacao,id_cme_contrapartida,tipo_valoracao, permite_manipulacao_valor,tipo_agrupamento_itens_impressao FROM Hiper.dbo.cme " +
-"where Hiper.dbo.cme.id_cme not in(select id_cme FROM Lojamix.dbo.cme)";
+            cmd.CommandText = "ALTER TABLE LOJAMIX.DBO.CME " +
+                "NOCHECK CONSTRAINT ALL " +
+                "INSERT INTO Lojamix.dbo.cme select id_cme,nome,operacao,id_cme_contrapartida,tipo_valoracao, permite_manipulacao_valor,tipo_agrupamento_itens_impressao FROM Hiper.dbo.cme " +
+"where Hiper.dbo.cme.id_cme not in(select id_cme FROM Lojamix.dbo.cme) " +
+"ALTER TABLE LOJAMIX.DBO.CME " +
+"CHECK CONSTRAINT ALL";
 
             ObjConexao.Conectar();
             cmd.ExecuteScalar();
