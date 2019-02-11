@@ -42,6 +42,21 @@ namespace ImportMtoH.classes
             objConexao.Conectar();
             com.ExecuteScalar();
             objConexao.Desconectar();
+            InserUnidade();
+        }
+        private void InserUnidade()
+        {
+            SqlCommand com = new SqlCommand();
+
+            com.Connection = objConexao.ObjetoConexao;
+            com.CommandText = "delete from lojamix.dbo.unidade_medida " +
+                "SET IDENTITY_INSERT lojamix.dbo.unidade_medida ON "+
+                "insert into lojamix.dbo.unidade_medida(id_unidade_medida, sigla, nome, casas_decimais, unidade_primaria) " +
+                "select id_unidade_medida, sigla, nome, casas_decimais, 1 from hiper.dbo.unidade_medida "+
+                "SET IDENTITY_INSERT lojamix.dbo.unidade_medida OFF";
+            objConexao.Conectar();
+            com.ExecuteScalar();
+            objConexao.Desconectar();
             InserMarca();
         }
 
@@ -61,8 +76,6 @@ namespace ImportMtoH.classes
                                 "CHECK Constraint ALL";
             objConexao.Conectar();
             com.ExecuteScalar();
-          
-
             objConexao.Desconectar();
             InserHier();
            
@@ -113,8 +126,8 @@ namespace ImportMtoH.classes
             com.Connection = objConexao.ObjetoConexao;
 
             com.CommandText = "SET IDENTITY_INSERT Lojamix.dbo.produto ON " +
-                "ALTER TABLE LOJAMIX.DBO.PRODUTO " +
-                "NOCHECK CONSTRAINT ALL " +
+                            "ALTER TABLE LOJAMIX.DBO.PRODUTO " +
+                            "NOCHECK CONSTRAINT ALL " +
                             "INSERT INTO Lojamix.dbo.produto(id_produto, nome, situacao, id_entidade_fornecedor, id_marca_produto, id_unidade_medida, id_hierarquia_produto, id_usuario_cadastro, data_hora_cadastro," +
                             "id_usuario_alteracao, data_hora_alteracao, tipo_variacao, id_tabela_variacao_a, id_tabela_variacao_b, referencia_interna_produto, preco_custo, preco_aquisicao," +
                             "preco_venda, preco_venda_atacado, cod_mercadoria, id_ncm, tributacao_pis_diferenciada, id_situacao_tributaria_pis, aliquota_pis, tributacao_cofins_diferenciada," +
@@ -124,7 +137,7 @@ namespace ImportMtoH.classes
                             "quantidade_fibra_alimentar, quantidade_fibra_alimentar_percentual, quantidade_sodio, quantidade_sodio_percentual, dias_validade, receita, informacao_adicional," +
                             "codigo_importacao, mva_interno, mva_externo, integrar_tablet, cest, id_loja_virtual, perc_red_bc_icms, codigo_anp, largura, altura, comprimento, volume, peso_volume," +
                             "tipo_dimensao, tipo_peso_volume, id_forca_vendas, descricao_loja_virtual, indicador_escala, cnpj_fabricante, codigo_beneficio_fiscal, descricao_anp) " +
-                            "SELECT id_produto, nome, situacao, id_entidade_fornecedor, id_marca_produto,10,id_hierarquia_produto,id_usuario_cadastro,data_hora_cadastro," +
+                            "SELECT id_produto, nome, situacao, id_entidade_fornecedor, id_marca_produto,id_unidade_medida,id_hierarquia_produto,id_usuario_cadastro,data_hora_cadastro," +
                             "id_usuario_alteracao,data_hora_alteracao,tipo_variacao,id_tabela_variacao_a,id_tabela_variacao_b,referencia_interna_produto,preco_custo,preco_aquisicao," +
                             "preco_venda,0,null, id_ncm,tributacao_pis_diferenciada,id_situacao_tributaria_pis,aliquota_pis, tributacao_cofins_diferenciada,id_situacao_tributaria_cofins,aliquota_cofins," +
                             "id_situacao_tributaria_ipi,aliquota_ipi, origem_produto, tipo_item,descricao_porcao,valor_energetico,valor_energetico_percentual,quantidade_carboidratos, " +
@@ -150,7 +163,7 @@ namespace ImportMtoH.classes
             com.CommandText = "ALTER TABLE Lojamix.dbo.produto_sinonimo "+
                                 "NOCHECK Constraint ALL "+
                             "INSERT INTO Lojamix.dbo.produto_sinonimo "+
-                            "select id_produto, id_variacao, codigo_barras, 'UN', id_usuario_cadastro,data_hora_cadastro,id_usuario_alteracao, data_hora_alteracao "+
+                            "select id_produto, id_variacao, codigo_barras, sigla_unidade_logistica ,id_usuario_cadastro,data_hora_cadastro,id_usuario_alteracao, data_hora_alteracao "+
                             "FROM Hiper.dbo.produto_sinonimo "+
                             "ALTER TABLE Lojamix.dbo.produto_sinonimo "+
                                 "CHECK Constraint ALL";
@@ -166,14 +179,14 @@ namespace ImportMtoH.classes
             com.Connection = objConexao.ObjetoConexao;
 
             com.CommandText = "SET IDENTITY_INSERT Lojamix.dbo.produto_fornecedor ON " +
-                "ALTER TABLE LOJAMIX.DBO.PRODUTO_FORNECEDOR " +
-                "NOCHECK CONSTRAINT ALL " +
+                            "ALTER TABLE LOJAMIX.DBO.PRODUTO_FORNECEDOR " +
+                            "NOCHECK CONSTRAINT ALL " +
                             "INSERT INTO Lojamix.dbo.produto_fornecedor(id_produto_fornecedor, id_entidade, id_produto, principal, ativo, observacao, ultimo_preco_aquisicao, data_alteracao_ultimo_preco, codigo_importacao) "+
                             "SELECT id_produto_fornecedor, id_entidade, id_produto,1,1,NULL,0.00, NULL, NULL "+
-                                "FROM Hiper.dbo.produto_fornecedor "+
-                                "SET IDENTITY_INSERT Lojamix.dbo.produto_fornecedor OFF " +
-                                "ALTER TABLE LOJAMIX.DBO.PRODUTO_FORNECEDOR " +
-                                "CHECK CONSTRAINT ALL";
+                            "FROM Hiper.dbo.produto_fornecedor "+
+                            "SET IDENTITY_INSERT Lojamix.dbo.produto_fornecedor OFF " +
+                            "ALTER TABLE LOJAMIX.DBO.PRODUTO_FORNECEDOR " +
+                            "CHECK CONSTRAINT ALL";
             objConexao.Conectar();
             com.ExecuteScalar();
             objConexao.Desconectar();
@@ -186,8 +199,8 @@ namespace ImportMtoH.classes
             com.Connection = objConexao.ObjetoConexao;
 
             com.CommandText = "ALTER TABLE LOJAMIX.DBO.PRODUTO_NUMERO_SERIE " +
-                "NOCHECK CONSTRAINT ALL " +
-                "INSERT INTO Lojamix.dbo.produto_numero_serie(id_produto,id_variacao,numero_serie,id_endereco_estoque) " +
+                                "NOCHECK CONSTRAINT ALL " +
+                                "INSERT INTO Lojamix.dbo.produto_numero_serie(id_produto,id_variacao,numero_serie,id_endereco_estoque) " +
                                 "select id_produto, id_variacao, numero_serie, id_endereco_estoque from Hiper.dbo.produto_numero_serie " +
                                 "ALTER TABLE LOJAMIX.DBO.PRODUTO_NUMERO_SERIE " +
                                 "CHECK CONSTRAINT ALL";
@@ -202,9 +215,9 @@ namespace ImportMtoH.classes
 
             com.Connection = objConexao.ObjetoConexao;
             com.CommandText = "DELETE FROM Lojamix.dbo.item_tabela_variacao where id_item_tabela_variacao >= 390 " +
-                "SET IDENTITY_INSERT Lojamix.dbo.item_tabela_variacao ON " +
-                "ALTER TABLE LOJAMIX.DBO.ITEM_TABELA_VARIACAO " +
-                "NOCHECK CONSTRAINT ALL "+
+                            "SET IDENTITY_INSERT Lojamix.dbo.item_tabela_variacao ON " +
+                            "ALTER TABLE LOJAMIX.DBO.ITEM_TABELA_VARIACAO " +
+                            "NOCHECK CONSTRAINT ALL "+
                             "INSERT INTO Lojamix.dbo.item_tabela_variacao(id_item_tabela_variacao, id_tabela_variacao, nome) "+
                             "SELECT id_item_tabela_variacao, id_tabela_variacao, nome FROM Hiper.dbo.item_tabela_variacao "+
                             "SET IDENTITY_INSERT Lojamix.dbo.item_tabela_variacao OFF " +
@@ -222,8 +235,8 @@ namespace ImportMtoH.classes
             com.Connection = objConexao.ObjetoConexao;
 
             com.CommandText = "ALTER TABLE LOJAMIX.DBO.PRODUTO_VARIACAO " +
-                "NOCHECK CONSTRAINT ALL " +
-                "INSERT INTO Lojamix.dbo.produto_variacao " +
+                                "NOCHECK CONSTRAINT ALL " +
+                                "INSERT INTO Lojamix.dbo.produto_variacao " +
                                 "Select id_produto, id_variacao, nome, situacao, id_item_tabela_variacao_a, id_item_tabela_variacao_b, referencia_interna_variacao,"+
                                 "nome_variacao_a, nome_variacao_b, NULL, NULL, NULL, NULL, NULL, NULL FROM Hiper.dbo.produto_variacao " +
                                 "ALTER TABLE LOJAMIX.DBO.PRODUTO_VARIACAO " +
@@ -255,7 +268,7 @@ namespace ImportMtoH.classes
 
             com.Connection = objConexao.ObjetoConexao;
             com.CommandText = "ALTER TABLE LOJAMIX.DBO.SALDO_ESTOQUE_DIARIO " +
-                "NOCHECK CONSTRAINT ALL" +
+                "NOCHECK CONSTRAINT ALL " +
                 "INSERT INTO Lojamix.dbo.saldo_estoque_diario select id_produto, id_variacao,id_endereco_estoque, data, saldo_data FROM Hiper.dbo.saldo_estoque_diario " +
                 "ALTER TABLE LOJAMIX.DBO.SALDO_ESTOQUE_DIARIO " +
                 "CHECK CONSTRAINT ALL";
@@ -284,7 +297,7 @@ namespace ImportMtoH.classes
             com.Connection = objConexao.ObjetoConexao;
             com.CommandText = "ALTER TABLE LOJAMIX.DBO.CADASTRO_LOGISTICO_PRODUTO " +
                 "NOCHECK CONSTRAINT ALL " +
-                "INSERT INTO Lojamix.dbo.cadastro_logistico_produto SELECT sigla_unidade_logistica,id_produto,10,multiplicador,0 FROM Hiper.dbo.cadastro_logistico_produto " +
+                "INSERT INTO Lojamix.dbo.cadastro_logistico_produto SELECT sigla_unidade_logistica,id_produto,id_unidade_medida,multiplicador,0 FROM Hiper.dbo.cadastro_logistico_produto " +
                 "ALTER TABLE LOJAMIX.DBO.CADASTRO_LOGISTICO_PRODUTO " +
                 "CHECK CONSTRAINT ALL";
             objConexao.Conectar();

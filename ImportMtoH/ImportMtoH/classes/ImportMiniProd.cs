@@ -29,8 +29,24 @@ namespace ImportMtoH.classes
             ObjConexao.Conectar();
             cmd.ExecuteScalar();
             ObjConexao.Desconectar();
+            InserUnidade();
+        }
+        private void InserUnidade()
+        {
+            SqlCommand com = new SqlCommand();
+
+            com.Connection = ObjConexao.ObjetoConexao;
+            com.CommandText = "delete from lojamix.dbo.unidade_medida " +
+                "SET IDENTITY_INSERT lojamix.dbo.unidade_medida ON " +
+                "insert into lojamix.dbo.unidade_medida(id_unidade_medida, sigla, nome, casas_decimais, unidade_primaria) " +
+                "select id_unidade_medida, sigla, nome, casas_decimais, 1 from hiper.dbo.unidade_medida " +
+                "SET IDENTITY_INSERT lojamix.dbo.unidade_medida OFF";
+            ObjConexao.Conectar();
+            com.ExecuteScalar();
+            ObjConexao.Desconectar();
             UpdaHierar();
         }
+
         private void UpdaHierar()
         {
             SqlCommand cmd = new SqlCommand();
@@ -100,7 +116,7 @@ namespace ImportMtoH.classes
 "quantidade_fibra_alimentar, quantidade_fibra_alimentar_percentual, quantidade_sodio, quantidade_sodio_percentual, dias_validade, receita, informacao_adicional, "+
 "codigo_importacao, mva_interno, mva_externo, integrar_tablet, cest, id_loja_virtual, perc_red_bc_icms, codigo_anp, largura, altura, comprimento, volume, peso_volume, "+
 "tipo_dimensao, tipo_peso_volume, id_forca_vendas, descricao_loja_virtual, indicador_escala, cnpj_fabricante, codigo_beneficio_fiscal, descricao_anp) "+
-"SELECT id_produto, nome, situacao, id_entidade_fornecedor, id_marca_produto, 10, id_hierarquia_produto,id_usuario_cadastro,data_hora_cadastro, "+
+"SELECT id_produto, nome, situacao, id_entidade_fornecedor, id_marca_produto, id_unidade_medida, id_hierarquia_produto,id_usuario_cadastro,data_hora_cadastro, "+
 "id_usuario_alteracao,data_hora_alteracao,tipo_variacao,id_tabela_variacao_a, id_tabela_variacao_b,referencia_interna_produto,preco_custo, preco_aquisicao,preco_venda, "+
 "0.00, NULL, id_ncm, tributacao_pis_diferenciada,id_situacao_tributaria_pis,0.00,tributacao_cofins_diferenciada,id_situacao_tributaria_cofins,0.00, 99, "+
 "aliquota_ipi, origem_produto,tipo_item, '', valor_energetico, valor_energetico_percentual,quantidade_carboidratos,quantidade_carboidratos_percentual,quantidade_proteinas, "+
@@ -132,7 +148,7 @@ namespace ImportMtoH.classes
             cmd.CommandText = "ALTER TABLE Lojamix.dbo.produto_sinonimo "+
 "    NOCHECK Constraint ALL "+
 "INSERT INTO Lojamix.dbo.produto_sinonimo "+
-"select id_produto, id_variacao, codigo_barras, 'UN', 1, '2018-01-01 00:00:00.00', NULL, NULL "+
+"select id_produto, id_variacao, codigo_barras, sigla_unidade_logistica, 1, '2018-01-01 00:00:00.00', NULL, NULL "+
 "FROM Hiper.dbo.produto_sinonimo "+
 "ALTER TABLE Lojamix.dbo.produto_sinonimo "+
 "    CHECK Constraint ALL";
