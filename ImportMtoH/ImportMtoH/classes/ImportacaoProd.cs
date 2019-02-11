@@ -72,10 +72,14 @@ namespace ImportMtoH.classes
             SqlCommand com = new SqlCommand();
 
             com.Connection = objConexao.ObjetoConexao;
-            com.CommandText = "INSERT INTO Lojamix.dbo.hierarquia_produto " +
+            com.CommandText = "ALTER TABLE LOJAMIX.DBO.HIERARQUIA_PRODUTO " +
+                "NOCHECK CONSTRAINT ALL "+
+                "INSERT INTO Lojamix.dbo.hierarquia_produto " +
                 "SELECT id_hierarquia_produto, nome, id_hierarquia_produto_pai, sequencia, NULL, 1,NULL, NULL, NULL, 0, NULL, NULL,NULL " +
                 "FROM Hiper.dbo.hierarquia_produto " +
-                "WHERE id_hierarquia_produto <> '1'";
+                "WHERE id_hierarquia_produto <> '1' " +
+                "ALTER TABLE LOJAMIX.DBO.HIERARQUIA_PRODUTO " +
+                "CHECK CONSTRAINT ALL";
             objConexao.Conectar();
             com.ExecuteScalar();
             objConexao.Desconectar();
@@ -109,6 +113,8 @@ namespace ImportMtoH.classes
             com.Connection = objConexao.ObjetoConexao;
 
             com.CommandText = "SET IDENTITY_INSERT Lojamix.dbo.produto ON " +
+                "ALTER TABLE LOJAMIX.DBO.PRODUTO " +
+                "NOCHECK CONSTRAINT ALL " +
                             "INSERT INTO Lojamix.dbo.produto(id_produto, nome, situacao, id_entidade_fornecedor, id_marca_produto, id_unidade_medida, id_hierarquia_produto, id_usuario_cadastro, data_hora_cadastro," +
                             "id_usuario_alteracao, data_hora_alteracao, tipo_variacao, id_tabela_variacao_a, id_tabela_variacao_b, referencia_interna_produto, preco_custo, preco_aquisicao," +
                             "preco_venda, preco_venda_atacado, cod_mercadoria, id_ncm, tributacao_pis_diferenciada, id_situacao_tributaria_pis, aliquota_pis, tributacao_cofins_diferenciada," +
@@ -127,7 +133,9 @@ namespace ImportMtoH.classes
                             "quantidade_fibra_alimentar_percentual,quantidade_sodio, quantidade_sodio_percentual, dias_validade,receita,informacao_adicional,NULL,0.00,"+
                             "0.00,1,'',NULL,0.00,'',0.00000,0.00000,0.00000,0.00000,0.00000,1,1,0,'',NULL,'','','' "+
                             "FROM Hiper.dbo.produto "+
-                            "SET IDENTITY_INSERT Lojamix.dbo.produto OFF";
+                            "SET IDENTITY_INSERT Lojamix.dbo.produto OFF " +
+                            "ALTER TABLE LOJAMIX.DBO.PRODUTO " +
+                            "CHECKI CONSTRAINT ALL";
             objConexao.Conectar();
             com.ExecuteScalar();
             objConexao.Desconectar();
@@ -157,11 +165,15 @@ namespace ImportMtoH.classes
 
             com.Connection = objConexao.ObjetoConexao;
 
-            com.CommandText = "SET IDENTITY_INSERT Lojamix.dbo.produto_fornecedor ON "+
+            com.CommandText = "SET IDENTITY_INSERT Lojamix.dbo.produto_fornecedor ON " +
+                "ALTER TABLE LOJAMIX.DBO.PRODUTO_FORNECEDOR " +
+                "NOCHECK CONSTRAINT ALL "+
                             "INSERT INTO Lojamix.dbo.produto_fornecedor(id_produto_fornecedor, id_entidade, id_produto, principal, ativo, observacao, ultimo_preco_aquisicao, data_alteracao_ultimo_preco, codigo_importacao) "+
                             "SELECT id_produto_fornecedor, id_entidade, id_produto,1,1,NULL,0.00, NULL, NULL "+
                                 "FROM Hiper.dbo.produto_fornecedor "+
-                                "SET IDENTITY_INSERT Lojamix.dbo.produto_fornecedor OFF";
+                                "SET IDENTITY_INSERT Lojamix.dbo.produto_fornecedor OFF " +
+                                "ALTER TABLE LOJAMIX.DBO.PRODUTO_FORNECEDOR " +
+                                "CHECK CONSTRAINT ALL";
             objConexao.Conectar();
             com.ExecuteScalar();
             objConexao.Desconectar();
@@ -173,8 +185,12 @@ namespace ImportMtoH.classes
 
             com.Connection = objConexao.ObjetoConexao;
 
-            com.CommandText = "INSERT INTO Lojamix.dbo.produto_numero_serie(id_produto,id_variacao,numero_serie,id_endereco_estoque) "+
-                                "select id_produto, id_variacao, numero_serie, id_endereco_estoque from Hiper.dbo.produto_numero_serie ";
+            com.CommandText = "ALTER TABLE LOJAMIX.DBO.PRODUTO_NUMERO_SERIE " +
+                "NOCHECK CONSTRAINT ALL " +
+                "INSERT INTO Lojamix.dbo.produto_numero_serie(id_produto,id_variacao,numero_serie,id_endereco_estoque) "+
+                                "select id_produto, id_variacao, numero_serie, id_endereco_estoque from Hiper.dbo.produto_numero_serie " +
+                                "ALTER TABLE LOJAMIX.DBO.PRODUTO_NUMERO_SERIE " +
+                                "CHECK CONSTRAINT ALL";
             objConexao.Conectar();
             com.ExecuteScalar();
             objConexao.Desconectar();
@@ -186,10 +202,14 @@ namespace ImportMtoH.classes
 
             com.Connection = objConexao.ObjetoConexao;
             com.CommandText = "DELETE FROM Lojamix.dbo.item_tabela_variacao where id_item_tabela_variacao >= 390 " +
-                "SET IDENTITY_INSERT Lojamix.dbo.item_tabela_variacao ON "+
+                "SET IDENTITY_INSERT Lojamix.dbo.item_tabela_variacao ON " +
+                "ALTER TABLE LOJAMIX.DBO.ITEM_TABELA_VARIACAO " +
+                "NOCHECK CONSTRAINT ALL "+
                             "INSERT INTO Lojamix.dbo.item_tabela_variacao(id_item_tabela_variacao, id_tabela_variacao, nome) "+
                             "SELECT id_item_tabela_variacao, id_tabela_variacao, nome FROM Hiper.dbo.item_tabela_variacao "+
-                            "SET IDENTITY_INSERT Lojamix.dbo.item_tabela_variacao OFF ";
+                            "SET IDENTITY_INSERT Lojamix.dbo.item_tabela_variacao OFF " +
+                            "ALTER TABLE LOJAMIX.DBO.ITEM_TABELA_VARIACAO " +
+                            "CHECK CONSTRAINT ALL";
             objConexao.Conectar();
             com.ExecuteScalar();
             objConexao.Desconectar();
@@ -201,9 +221,14 @@ namespace ImportMtoH.classes
 
             com.Connection = objConexao.ObjetoConexao;
 
-            com.CommandText = "INSERT INTO Lojamix.dbo.produto_variacao "+
+            com.CommandText = "ALTER TABLE LOJAMIX.DBO.PRODUTO_VARIACAO " +
+                "NOCHECK CONSTRAINT ALL " +
+                "INSERT INTO Lojamix.dbo.produto_variacao "+
                                 "Select id_produto, id_variacao, nome, situacao, id_item_tabela_variacao_a, id_item_tabela_variacao_b, referencia_interna_variacao,"+
-                                "nome_variacao_a, nome_variacao_b, NULL, NULL, NULL, NULL, NULL, NULL FROM Hiper.dbo.produto_variacao ";
+                                "nome_variacao_a, nome_variacao_b, NULL, NULL, NULL, NULL, NULL, NULL FROM Hiper.dbo.produto_variacao " +
+                                "ALTER TABLE LOJAMIX.DBO.PRODUTO_VARIACAO " +
+                                "CHECK CONSTRAINT ALL";
+
             objConexao.Conectar();
             com.ExecuteScalar();
             objConexao.Desconectar();
@@ -214,7 +239,11 @@ namespace ImportMtoH.classes
             SqlCommand com = new SqlCommand();
 
             com.Connection = objConexao.ObjetoConexao;
-            com.CommandText = "INSERT INTO Lojamix.dbo.saldo_estoque select id_produto, id_variacao,id_endereco_estoque,quantidade,hash_md5,0 FROM Hiper.dbo.saldo_estoque";
+            com.CommandText = "ALTER TABLE LOJAMIX.DBO.SALDO_ESTOQUE " +
+                "NOCHECK CONSTRAINT ALL " +
+                "INSERT INTO Lojamix.dbo.saldo_estoque select id_produto, id_variacao,id_endereco_estoque,quantidade,hash_md5,0 FROM Hiper.dbo.saldo_estoque " +
+                "ALTER TABLE LOJAMIX.DBO.SALDO_ESTOQUE " +
+                "CHECK CONSTRAINT ALL";
             objConexao.Conectar();
             com.ExecuteScalar();
             objConexao.Desconectar();
@@ -225,7 +254,11 @@ namespace ImportMtoH.classes
             SqlCommand com = new SqlCommand();
 
             com.Connection = objConexao.ObjetoConexao;
-            com.CommandText = "INSERT INTO Lojamix.dbo.saldo_estoque_diario select id_produto, id_variacao,id_endereco_estoque, data, saldo_data FROM Hiper.dbo.saldo_estoque_diario";
+            com.CommandText = "ALTER TABLE LOJAMIX.DBO.SALDO_ESTOQUE_DIARIO " +
+                "NOCHECK CONSTRAINT ALL" +
+                "INSERT INTO Lojamix.dbo.saldo_estoque_diario select id_produto, id_variacao,id_endereco_estoque, data, saldo_data FROM Hiper.dbo.saldo_estoque_diario " +
+                "ALTER TABLE LOJAMIX.DBO.SALDO_ESTOQUE_DIARIO " +
+                "CHECK CONSTRAINT ALL";
 
             objConexao.Conectar();
             com.ExecuteScalar();
