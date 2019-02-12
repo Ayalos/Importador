@@ -77,7 +77,7 @@ namespace ImportMtoH.classes
                 "nocheck constraint all " +
                 "INSERT INTO Lojamix.dbo.usuario_filial SELECT * FROM Hiper.dbo.usuario_filial WHERE id_usuario <> 1 " +
                 "alter table lojamix.dbo.usuario_filial " +
-                "check constgraint all";
+                "check constraint all";
             ObjConexao.Conectar();
             cmd.ExecuteScalar();
             ObjConexao.Desconectar();

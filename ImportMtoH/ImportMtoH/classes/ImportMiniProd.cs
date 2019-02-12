@@ -98,6 +98,28 @@ namespace ImportMtoH.classes
             ObjConexao.Conectar();
             cmd.ExecuteScalar();
             ObjConexao.Desconectar();
+            UpdateIdForne();
+        }
+        private void UpdateIdForne()
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = ObjConexao.ObjetoConexao;
+            cmd.CommandText = "if (Select count(id_produto) from Hiper.dbo.produto where id_entidade_fornecedor IS null) > 0 " +
+ "BEGIN " +
+ "update hiper.dbo.produto set id_entidade_fornecedor = (select top 1 id_entidade from hiper.dbo.entidade) where id_entidade_fornecedor IS NULL "+
+ "END " +
+ "if (Select count(id_produto) from Hiper.dbo.produto where id_marca_produto IS null) > 0 " +
+ "BEGIN " +
+ "update hiper.dbo.produto set id_marca_produto = (select top 1 id_marca_produto from hiper.dbo.marca_produto) where id_marca_produto IS NULL "+
+ "END " +
+ "if (Select count(id_produto) from Hiper.dbo.produto where id_hierarquia_produto IS null) > 0 " +
+ "BEGIN "+
+ "update hiper.dbo.produto set id_hierarquia_produto = (select top 1 id_hierarquia_produto from hiper.dbo.hierarquia_produto) where id_hierarquia_produto IS NULL " +
+ "END";
+             
+            ObjConexao.Conectar();
+            cmd.ExecuteScalar();
+            ObjConexao.Desconectar();
             InsertProd();
         }
         private void InsertProd()
@@ -167,7 +189,7 @@ namespace ImportMtoH.classes
 "INSERT INTO Lojamix.dbo.produto_fornecedor(id_produto_fornecedor, id_entidade, id_produto, principal, ativo, observacao, ultimo_preco_aquisicao, data_alteracao_ultimo_preco, codigo_importacao) "+
 "SELECT id_produto_fornecedor, id_entidade, id_produto,1,1,NULL,0.00, NULL, NULL "+
 "  FROM Hiper.dbo.produto_fornecedor "+
-"  SET IDENTITY_INSERT Lojamix.dbo.produto_fornecedor OFF" +
+"  SET IDENTITY_INSERT Lojamix.dbo.produto_fornecedor OFF " +
 "ALTER TABLE LOJAMIX.DBO.PRODUTO_FORNECEDOR " +
 "CHECK CONSTRAINT ALL";
             ObjConexao.Conectar();
@@ -180,7 +202,7 @@ namespace ImportMtoH.classes
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = ObjConexao.ObjetoConexao;
             cmd.CommandText = "ALTER TABLE LOJAMIX.DBO.PRODUTO_NUMERO_SERIE " +
-                "NOCHECK CONJSTRAINT ALL " +
+                "NOCHECK CONSTRAINT ALL " +
                 "INSERT INTO Lojamix.dbo.produto_numero_serie(id_produto,id_variacao,numero_serie,id_endereco_estoque) "+
 "select id_produto, id_variacao, numero_serie, id_endereco_estoque from Hiper.dbo.produto_numero_serie " +
 "ALTER TABLE LOJAMIX.DBO.PRODUTO_NUMERO_SERIE " +
@@ -197,7 +219,7 @@ namespace ImportMtoH.classes
             cmd.CommandText = "DELETE FROM Lojamix.dbo.item_tabela_variacao where id_item_tabela_variacao >= 390 "+
 "SET IDENTITY_INSERT Lojamix.dbo.item_tabela_variacao ON " +
 "ALTER TABLE LOJAMIX.DBO.ITEM_TABELA_VARIACAO " +
-"NOCHECK CONSTRAINT ALL"+
+"NOCHECK CONSTRAINT ALL "+
 "INSERT INTO Lojamix.dbo.item_tabela_variacao(id_item_tabela_variacao, id_tabela_variacao, nome) "+
 "SELECT id_item_tabela_variacao, id_tabela_variacao, nome FROM Hiper.dbo.item_tabela_variacao "+
 "SET IDENTITY_INSERT Lojamix.dbo.item_tabela_variacao OFF " +
@@ -260,7 +282,7 @@ namespace ImportMtoH.classes
 "FROM Hiper.dbo.endereco_estoque WHERE id_endereco_estoque <> 1 "+
 "Alter table Lojamix.dbo.endereco_estoque "+
 "CHECK Constraint ALL "+
-"SET IDENTITY_INSERT Lojamix.dbo.endereco_estoque OFF";
+"SET IDENTITY_INSERT Lojamix.dbo.endereco_estoque OFF ";
             ObjConexao.Conectar();
             cmd.ExecuteScalar();
             ObjConexao.Desconectar();

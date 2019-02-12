@@ -58,7 +58,7 @@ namespace ImportMtoH {
             
             #line default
             #line hidden
-            System.Uri resourceLocater = new System.Uri("/ImportMtoH;component/app.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Importador;component/app.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\App.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
