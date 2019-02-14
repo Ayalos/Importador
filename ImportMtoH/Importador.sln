@@ -5,16 +5,28 @@ VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Importador", "ImportMtoH\Importador.csproj", "{DF71DEA7-A964-456D-9333-3E818066EC3F}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup1", "Setup1\Setup1.vdproj", "{158389AC-34DC-4B5A-9E6F-48ED61F505C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{DF71DEA7-A964-456D-9333-3E818066EC3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DF71DEA7-A964-456D-9333-3E818066EC3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF71DEA7-A964-456D-9333-3E818066EC3F}.Debug|x86.ActiveCfg = Debug|x86
+		{DF71DEA7-A964-456D-9333-3E818066EC3F}.Debug|x86.Build.0 = Debug|x86
 		{DF71DEA7-A964-456D-9333-3E818066EC3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF71DEA7-A964-456D-9333-3E818066EC3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF71DEA7-A964-456D-9333-3E818066EC3F}.Release|x86.ActiveCfg = Release|x86
+		{DF71DEA7-A964-456D-9333-3E818066EC3F}.Release|x86.Build.0 = Release|x86
+		{158389AC-34DC-4B5A-9E6F-48ED61F505C9}.Debug|Any CPU.ActiveCfg = Debug
+		{158389AC-34DC-4B5A-9E6F-48ED61F505C9}.Debug|x86.ActiveCfg = Debug
+		{158389AC-34DC-4B5A-9E6F-48ED61F505C9}.Release|Any CPU.ActiveCfg = Release
+		{158389AC-34DC-4B5A-9E6F-48ED61F505C9}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
