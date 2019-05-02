@@ -1,8 +1,6 @@
 insert into Lojamix.dbo.perfil_usuario select nome,NULL from Hiper.dbo.perfil_usuario where id_perfil_usuario <> 1
 
-
-
-INSERT INTO Lojamix.dbo.usuario select login, nome, ativo, senha, id_ultimo_correio_eletronico_lido, id_perfil_usuario, id_filial_trabalho,
+INSERT INTO Lojamix.dbo.usuario select id_usuario, login, nome, ativo, senha, id_ultimo_correio_eletronico_lido, id_perfil_usuario, id_filial_trabalho,
 vendedor, email, NULL, tecnico, 0 from Hiper.dbo.usuario where id_usuario <> 1
 
 Alter Table Lojamix.dbo.entidade

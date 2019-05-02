@@ -38,13 +38,13 @@ namespace ImportMtoH.classes
             SqlCommand cmd = new SqlCommand();
 
             cmd.Connection = ObjConexao.ObjetoConexao;
-            cmd.CommandText = "use Lojamix " +
-                "DBCC CHECKIDENT('Lojamix.dbo.usuario', RESEED, 1) " +
-                              "INSERT INTO Lojamix.dbo.usuario " +
+            cmd.CommandText ="SET IDENTITY_INSERT LOJAMIX.DBO.USUARIO ON" +
+                              "INSERT INTO Lojamix.dbo.usuario(id_usuario,login,nome,ativo,senha,id_ultimo_correio_eletronico_lido,id_perfil_usuario,id_filial_trabalho,vendedor,email,id_entidade,tecnico,Id_Vendedor_Umovme) " +
                               "SELECT login, nome, ativo, senha, id_ultimo_correio_eletronico_lido, id_perfil_usuario, id_filial_trabalho, " +
                               "vendedor, email, NULL, tecnico, 0 " +
                               "FROM Hiper.dbo.usuario " +
-                              "WHERE id_usuario <> 1";
+                              "WHERE id_usuario <> 1" +
+                              "SET IDENTITY_INSERT LOJAMIX.DBO.USUARIO OFF";
             ObjConexao.Conectar();
             cmd.ExecuteScalar();
             ObjConexao.Desconectar();
