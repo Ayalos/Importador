@@ -110,7 +110,7 @@ namespace ImportMtoH.classes
                                 "INSERT INTO Lojamix.dbo.tabela_variacao(id_tabela_variacao, nome) " +
                                 "(SELECT id_tabela_variacao, nome " +
                                 "FROM Hiper.dbo.tabela_variacao " +
-                                "where id_tabela_variacao != 1 and id_tabela_variacao != 2)" +
+                                "where id_tabela_variacao != 1 and id_tabela_variacao != 2) " +
                                 "SET IDENTITY_INSERT Lojamix.dbo.tabela_variacao OFF " +
                                 "ALTER TABLE LOJAMIX.DBO.TABELA_variacao " +
                                     "CHECK Constraint ALL";
