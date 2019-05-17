@@ -31,10 +31,12 @@
         <StackPanel Margin="136,0,0,70">
 
             <!-- Opções para o Hiper Legado -->
-            <CheckBox Name="checkFilial"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Filial" Margin="0,60,0,-24" Visibility="Hidden"/>
+            <CheckBox Name="checkFilial"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Filial" Margin="0,50,0,-24" Visibility="Hidden"/>
             <CheckBox Name="checkEntidade"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Entidade" Margin="0,30,0,-24" Visibility="Hidden"/>
             <CheckBox Name="checkProd"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Produtos" Margin="0,30,0,-24" Visibility="Hidden"/>
             <CheckBox Name="checkDoc"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Documentos" Margin="0,30,0,-24" Visibility="Hidden"/>
+            <CheckBox Name="checkCon"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Consignação" Margin="0,30,0,-24" Visibility="Hidden"/>
+
             <!-- Opções para o Hiper Mini -->
             <CheckBox Name="checkMiniEnt"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Entidade" Margin="0,-90,0,-24" Visibility="Hidden" Height="24"/>
             <CheckBox Name="checkMiniProd"  Style="{StaticResource MaterialDesignCheckBox}" IsChecked="False" Content="Produtos" Margin="0,-40,0,-24" Visibility="Hidden" Height="23"/>

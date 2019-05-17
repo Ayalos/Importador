@@ -34,6 +34,7 @@ namespace ImportMtoH
             ImportacaoDoc inserirDoc = new ImportacaoDoc(conec);
             ImportacaoFilial inserirFil = new ImportacaoFilial(conec);
             ImportacaoEmp inserirEmp = new ImportacaoEmp(conec);
+            ImportConsignado inserirCon = new ImportConsignado(conec);
 
             checkEntidade.IsChecked = inserirEnti.ChecarEntidade();
             if (checkHiper.IsChecked == true)
@@ -90,6 +91,19 @@ namespace ImportMtoH
                         MessageBox.Show(ex.ToString());
                     }
                 }
+
+                if(checkCon.IsChecked == true)
+                {
+                    try
+                    {
+                        inserirCon.ImportarConsignado();
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+
                 MessageBox.Show("Importação do Hiper Legado concluída");
             }
             ImportMiniEnti InserMiniEnti = new ImportMiniEnti(conec);
@@ -135,6 +149,7 @@ namespace ImportMtoH
                 checkEntidade.Visibility = Visibility.Visible;
                 checkProd.Visibility = Visibility.Visible;
                 checkDoc.Visibility = Visibility.Visible;
+                checkCon.Visibility = Visibility.Visible;
                 checkHiperMini.IsEnabled = false;
             }
             else
@@ -143,6 +158,7 @@ namespace ImportMtoH
                 checkEntidade.Visibility = Visibility.Hidden;
                 checkProd.Visibility = Visibility.Hidden;
                 checkDoc.Visibility = Visibility.Hidden;
+                checkCon.Visibility = Visibility.Hidden;
                 checkHiperMini.IsEnabled = true;
             }
         }

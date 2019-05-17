@@ -73,8 +73,8 @@ SET IDENTITY_INSERT Lojamix.dbo.item_tabela_variacao OFF
 
 INSERT INTO Lojamix.dbo.produto_variacao
 Select id_produto, id_variacao, nome, situacao, id_item_tabela_variacao_a,id_item_tabela_variacao_b,referencia_interna_variacao,
-nome_variacao_a, nome_variacao_b, estoque_minimo,NULL,NULL,NULL,NULL,NULL from Hiper.dbo.produto_variacao
-
+nome_variacao_a, nome_variacao_b, 0,NULL,NULL,NULL,NULL,NULL  from Hiper.dbo.produto_variacao
+ 
 ---------------------------------------------------------------------------------
 Alter Table Lojamix.dbo.saldo_estoque
 	NOCHECK Constraint ALL
