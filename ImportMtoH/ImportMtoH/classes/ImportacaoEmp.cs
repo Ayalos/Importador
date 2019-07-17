@@ -41,9 +41,9 @@ namespace ImportMtoH.classes
             ObjConexao.Conectar();
             cmd.ExecuteScalar();
             ObjConexao.Desconectar();
-            UpdateConfEmp();
+            UpdateFilial();
         }
-        private void UpdateConfEmp()
+       /* private void UpdateConfEmp()
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = ObjConexao.ObjetoConexao;
@@ -61,8 +61,8 @@ namespace ImportMtoH.classes
 "considerar_feriado_encargos_receber = confemp.considerar_feriado_encargos_receber,registrar_contas_pagar_compromisso = confemp.registrar_contas_pagar_compromisso, " +
 "registrar_contas_pagar_autorizado = confemp.registrar_contas_pagar_autorizado, id_nop_venda_ecf = confemp.id_nop_venda_ecf,id_tipo_lancamento_juro = NULL, id_tipo_lancamento_multa = NULL, " +
 "id_cfop_faturamento_pdv_icms_st = 5405, id_cfop_faturamento_pdv_icms_normal = 5102, id_nop_ordem_servico_dentro_uf = 3, id_nop_ordem_servico_fora_uf = 5, id_cme_entrada_reserva = NULL, " +
-"id_cme_saida_reserva = NULL, id_nop_consignacao_entrada = NULL, id_nop_consignacao_saida = NULL, id_conta_contabil_pendencia = NULL, id_conta_contabil_cheque = NULL, " +
-"usar_ean_padrao = 0, cod_pais_ean_padrao = NULL, cod_empresa_ean_padrao = NULL, id_nop_devolucao_compra = NULL, id_conta_contabil_cartao_credito = NULL, " +
+"id_cme_saida_reserva = NULL, id_nop_consignacao_entrada = 28, id_nop_consignacao_saida = 24, id_conta_contabil_pendencia = NULL, id_conta_contabil_cheque = NULL, " +
+"usar_ean_padrao = 0, cod_pais_ean_padrao = NULL, cod_empresa_ean_padrao = NULL, id_nop_devolucao_compra = 17, id_conta_contabil_cartao_credito = NULL, " +
 "id_tipo_documento_financeiro_cartao_credito = 3 , integrar_cartao_credito_pdv_no_financeiro = 0 FROM Hiper.dbo.configuracao_empresa AS confemp " +
 "alter table lojamix.dbo.configuracao_empresa " +
 "check constraint all";
@@ -71,7 +71,7 @@ namespace ImportMtoH.classes
             cmd.ExecuteScalar();
             ObjConexao.Desconectar();
             UpdateFilial();
-        }
+        }*/
         private void UpdateFilial()
         {
             SqlCommand cmd = new SqlCommand();

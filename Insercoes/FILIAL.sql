@@ -1,4 +1,3 @@
-
 UPDATE Lojamix.dbo.filial SET id_empresa=filia.id_empresa, codigo_filial=filia.codigo_filial,razao_social=filia.razao_social,nome_fantasia=filia.nome_fantasia, apelido=filia.apelido,
 cnpj=filia.cnpj,ie=filia.ie,logradouro=filia.logradouro, endereco_numero=filia.endereco_numero,complemento=filia.complemento,bairro=filia.bairro, cep=filia.cep, id_cidade=filia.id_cidade,
 fone1_ddd=filia.fone1_ddd,fone1_numero=filia.fone1_numero,fone2_ddd=filia.fone2_ddd,fone2_numero=filia.fone2_numero,site=filia.site, email=filia.email,im=filia.im,suframa=filia.suframa,
@@ -23,23 +22,6 @@ INSERT INTO Lojamix.dbo.cme select id_cme,nome,operacao,id_cme_contrapartida,tip
 where Hiper.dbo.cme.id_cme not in(select id_cme FROM Lojamix.dbo.cme)
 
 UPDATE Lojamix.dbo.empresa SET nome = emp.nome from Hiper.dbo.empresa AS emp where emp.id_empresa = 1  
-
-UPDATE Lojamix.dbo.configuracao_empresa SET id_empresa=confemp.id_empresa, id_cme_venda=confemp.id_cme_venda,id_cme_devolucao=confemp.id_cme_devolucao,
-qtd_maxima_movim_estoque= confemp.qtd_maxima_movim_estoque,id_nop_faturamento_icms_normal = 3, id_nop_faturamento_icms_st=7,
-id_nop_faturamento_pdv_icms_normal=confemp.id_nop_faturamento_pdv_icms_normal, id_nop_faturamento_pdv_icms_st=confemp.id_nop_faturamento_pdv_icms_st,
-id_tipo_documento_financeiro_faturamento_pedido_venda = confemp.id_tipo_documento_financeiro_faturamento_pedido_venda, id_tipo_documento_financeiro_cheque=confemp.id_tipo_documento_financeiro_cheque,
-id_tipo_documento_financeiro_pendencia=confemp.id_tipo_documento_financeiro_pendencia,ip_host_unife = confemp.ip_host_unife, database_unife = confemp.database_unife,usuario_unife=confemp.usuario_unife,
-porta_unife=confemp.porta_unife, id_tipo_documento_financeiro_comissao=confemp.id_tipo_documento_financeiro_comissao, id_nop_devolucao_venda=confemp.id_nop_devolucao_venda,
-id_potencial_entidade_padrao = confemp.id_potencial_entidade_padrao, percentual_juros_receber = confemp.percentual_juros_receber, percentual_multa_receber = confemp.percentual_multa_receber,
-considerar_sabado_encargos_receber=confemp.considerar_sabado_encargos_receber, considerar_domingo_encargos_receber=confemp.considerar_domingo_encargos_receber, 
-considerar_feriado_encargos_receber=confemp.considerar_feriado_encargos_receber,registrar_contas_pagar_compromisso=confemp.registrar_contas_pagar_compromisso,
-registrar_contas_pagar_autorizado = confemp.registrar_contas_pagar_autorizado, id_nop_venda_ecf=confemp.id_nop_venda_ecf,id_tipo_lancamento_juro=NULL, id_tipo_lancamento_multa= NULL,
-id_cfop_faturamento_pdv_icms_st=5405, id_cfop_faturamento_pdv_icms_normal=5102, id_nop_ordem_servico_dentro_uf = 3, id_nop_ordem_servico_fora_uf = 5, id_cme_entrada_reserva = NULL,
-id_cme_saida_reserva = NULL, id_nop_consignacao_entrada = NULL, id_nop_consignacao_saida = NULL, id_conta_contabil_pendencia = NULL, id_conta_contabil_cheque = NULL,
-usar_ean_padrao=0, cod_pais_ean_padrao = NULL, cod_empresa_ean_padrao = NULL, id_nop_devolucao_compra = NULL, id_conta_contabil_cartao_credito = NULL, 
-id_tipo_documento_financeiro_cartao_credito = 3 , integrar_cartao_credito_pdv_no_financeiro = 0 FROM Hiper.dbo.configuracao_empresa AS confemp
-
-
 
 UPDATE Lojamix.dbo.configuracao_filial SET id_filial = confilial.id_filial, id_endereco_estoque_vendas = confilial.id_endereco_estoque_vendas, tipo_preco_venda = 1,
 codigo_regime_tributario = confilial.codigo_regime_tributario, situacao_tributaria_pis = confilial.situacao_tributaria_pis, aliquota_pis = confilial.aliquota_pis,

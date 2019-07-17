@@ -276,19 +276,6 @@ namespace ImportMtoH.classes
             objConexao.Conectar();
             com.ExecuteScalar();
             objConexao.Desconectar();
-            InserHierar();
-        }
-        private void InserHierar()
-        {
-            SqlCommand com = new SqlCommand();
-
-            com.Connection = objConexao.ObjetoConexao;
-            com.CommandText = "UPDATE Lojamix.dbo.hierarquia_produto SET nome = hierarquia.nome, id_hierarquia_produto_pai = hierarquia.id_hierarquia_produto_pai, sequencia=hierarquia.sequencia "+
- "FROM Hiper.dbo.hierarquia_produto AS hierarquia where Lojamix.dbo.hierarquia_produto.id_hierarquia_produto = 1";
-
-            objConexao.Conectar();
-            com.ExecuteScalar();
-            objConexao.Desconectar();
             InserCadastro();
         }
         private void InserCadastro()
@@ -300,6 +287,19 @@ namespace ImportMtoH.classes
                 "INSERT INTO Lojamix.dbo.cadastro_logistico_produto SELECT sigla_unidade_logistica,id_produto,id_unidade_medida,multiplicador,0 FROM Hiper.dbo.cadastro_logistico_produto " +
                 "ALTER TABLE LOJAMIX.DBO.CADASTRO_LOGISTICO_PRODUTO " +
                 "CHECK CONSTRAINT ALL";
+            objConexao.Conectar();
+            com.ExecuteScalar();
+            objConexao.Desconectar();
+            InserHierar();
+        }
+        private void InserHierar()
+        {
+            SqlCommand com = new SqlCommand();
+
+            com.Connection = objConexao.ObjetoConexao;
+            com.CommandText = "UPDATE Lojamix.dbo.hierarquia_produto SET nome = hierarquia.nome, id_hierarquia_produto_pai = hierarquia.id_hierarquia_produto_pai, sequencia=hierarquia.sequencia "+
+ "FROM Hiper.dbo.hierarquia_produto AS hierarquia where Lojamix.dbo.hierarquia_produto.id_hierarquia_produto = 1";
+
             objConexao.Conectar();
             com.ExecuteScalar();
             objConexao.Desconectar();

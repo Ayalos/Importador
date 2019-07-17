@@ -137,11 +137,6 @@ namespace ImportMtoH
             ButtonProgressAssist.SetIsIndeterminate(btnImport, false);
         }
 
-        private void Window_Initialized(object sender, EventArgs e)
-        {
-           
-        }
-
         private void CheckHiper_Click(object sender, RoutedEventArgs e)
         {
             if (checkHiper.IsChecked==true) {
