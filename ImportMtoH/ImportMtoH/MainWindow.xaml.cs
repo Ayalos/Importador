@@ -103,6 +103,17 @@ namespace ImportMtoH
                         MessageBox.Show(ex.ToString());
                     }
                 }
+                if(checkCfop.IsChecked == true)
+                {
+                    try
+                    {
+                        inserirProd.InserCFOP();
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
 
                 MessageBox.Show("Importação do Hiper Legado concluída");
             }

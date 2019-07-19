@@ -290,10 +290,10 @@ namespace ImportMtoH.classes
             objConexao.Conectar();
             com.ExecuteScalar();
             objConexao.Desconectar();
-            InserCFOP();
+            InserHierar();
         }
 
-        private void InserCFOP()
+        public void InserCFOP()
         {
             SqlCommand com = new SqlCommand();
             com.Connection = objConexao.ObjetoConexao;
@@ -335,7 +335,7 @@ namespace ImportMtoH.classes
             objConexao.Conectar();
             com.ExecuteScalar();
             objConexao.Desconectar();
-            InserHierar();
+
         }
         private void InserHierar()
         {
