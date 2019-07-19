@@ -32,11 +32,11 @@ namespace ImportMtoH.classes
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = ObjConexao.ObjetoConexao;
-            cmd.CommandText = "alter table lojamix.dbo.usuario " +
-                "nocheck constraint all  " +
-                "INSERT INTO Lojamix.dbo.usuario select login, nome, ativo, senha, id_ultimo_correio_eletronico_lido, id_perfil_usuario, id_filial_trabalho, "+
-                "vendedor, email, NULL, tecnico, 0 from Hiper.dbo.usuario where id_usuario <> 1 " +
-                "alter table lojamix.dbo.usuario " +
+            cmd.CommandText = "alter table lojamix.dbo.usuario "+
+                "nocheck constraint all "+
+                "INSERT INTO Lojamix.dbo.usuario select login, nome, ativo, senha, id_ultimo_correio_eletronico_lido, id_perfil_usuario, id_filial_trabalho,  "+
+                "vendedor, email, NULL, tecnico, 0 from Hiper.dbo.usuario where id_usuario <> 1 "+
+                "alter table lojamix.dbo.usuario "+
                 "check constraint all";
             ObjConexao.Conectar();
             cmd.ExecuteScalar();
@@ -48,7 +48,7 @@ namespace ImportMtoH.classes
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = ObjConexao.ObjetoConexao;
             cmd.CommandText = "Alter Table Lojamix.dbo.entidade "+
-"    NOCHECK Constraint All "+
+    "NOCHECK Constraint All "+
 "SET IDENTITY_INSERT Lojamix.dbo.entidade ON "+
 "Insert into Lojamix.dbo.entidade(id_entidade, tipo_entidade, nome, id_usuario_cadastro, data_hora_cadastro, id_usuario_alteracao, data_hora_alteracao, logradouro, numero_endereco, bairro, complemento, "+
 "cep, id_cidade, site, observacao, id_potencial, flag_fornecedor, flag_guia, flag_transportadora, flag_funcionario, situacao_replicacao_multiloja, limite_credito, flag_contador, num_insc_crc, fone1_ddd, "+
@@ -73,10 +73,10 @@ namespace ImportMtoH.classes
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = ObjConexao.ObjetoConexao;
-            cmd.CommandText = "alter table lojamix.dbo.usuario_filial " +
-                "nocheck constraint all " +
-                "INSERT INTO Lojamix.dbo.usuario_filial SELECT * FROM Hiper.dbo.usuario_filial WHERE id_usuario <> 1 " +
-                "alter table lojamix.dbo.usuario_filial " +
+            cmd.CommandText = "alter table lojamix.dbo.usuario_filial "+
+                "nocheck constraint all "+
+                "INSERT INTO Lojamix.dbo.usuario_filial SELECT *FROM Hiper.dbo.usuario_filial WHERE id_usuario <> 1 "+
+                "alter table lojamix.dbo.usuario_filial "+
                 "check constraint all";
             ObjConexao.Conectar();
             cmd.ExecuteScalar();
@@ -106,7 +106,7 @@ namespace ImportMtoH.classes
     "NOCHECK Constraint All "+
 "INSERT INTO Lojamix.dbo.pessoa_juridica(id_entidade, cnpj, ie, nome_fantasia, suframa, indicador_ie, codigo_regime_tributario) select id_entidade, cnpj, ie, nome_fantasia, suframa, 0,NULL FROM Hiper.dbo.pessoa_juridica "+
   "Alter Table Lojamix.dbo.pessoa_juridica "+
-"      CHECK Constraint All";
+      "CHECK Constraint All";
             ObjConexao.Conectar();
             cmd.ExecuteScalar();
             ObjConexao.Desconectar();
@@ -116,12 +116,18 @@ namespace ImportMtoH.classes
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = ObjConexao.ObjetoConexao;
-            cmd.CommandText = "Alter table lojamix.dbo.entidade_filial " +
-                "nocheck constraint all " +
-                "insert into Lojamix.dbo.entidade_filial (id_entidade, id_filial) "+
+            cmd.CommandText = "Alter table lojamix.dbo.entidade_filial "+
+                "nocheck constraint all "+
+                "insert into Lojamix.dbo.entidade_filial(id_entidade, id_filial) "+
 "select entidade.id_entidade, filial.id_filial from Lojamix.dbo.entidade "+
-"CROSS JOIN Lojamix.dbo.filial " +
-"alter table lojamix.dbo.entidade_filial " +
+"CROSS JOIN Lojamix.dbo.filial "+
+"alter table lojamix.dbo.entidade_filial "+
+"check constraint allAlter table lojamix.dbo.entidade_filial "+
+                "nocheck constraint all "+
+                "insert into Lojamix.dbo.entidade_filial(id_entidade, id_filial) "+
+"select entidade.id_entidade, filial.id_filial from Lojamix.dbo.entidade "+
+"CROSS JOIN Lojamix.dbo.filial "+
+"alter table lojamix.dbo.entidade_filial "+
 "check constraint all";
             ObjConexao.Conectar();
             cmd.ExecuteScalar();
