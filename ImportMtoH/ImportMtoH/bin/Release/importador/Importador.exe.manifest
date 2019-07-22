@@ -44,14 +44,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Importador.exe" size="225712">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Importador.exe" size="227248">
       <assemblyIdentity name="Importador" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>W83uuAtfeYuq3JT4VEPRT58y7zvA4x2mwU8fV+AThRQ=</dsig:DigestValue>
+        <dsig:DigestValue>zKm6lIG42imL0/jFMSHR0yuFxhuDG+dfuPhptGG+sb4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -138,13 +138,13 @@ namespace ImportMtoH.classes
 "quantidade_fibra_alimentar, quantidade_fibra_alimentar_percentual, quantidade_sodio, quantidade_sodio_percentual, dias_validade, receita, informacao_adicional, "+
 "codigo_importacao, mva_interno, mva_externo, integrar_tablet, cest, id_loja_virtual, perc_red_bc_icms, codigo_anp, largura, altura, comprimento, volume, peso_volume, "+
 "tipo_dimensao, tipo_peso_volume, id_forca_vendas, descricao_loja_virtual, indicador_escala, cnpj_fabricante, codigo_beneficio_fiscal, descricao_anp) "+
-"SELECT id_produto, nome, situacao, id_entidade_fornecedor, id_marca_produto, id_unidade_medida, id_hierarquia_produto, id_usuario_cadastro, data_hora_cadastro, "+
+"SELECT id_produto, nome, situacao, id_entidade_fornecedor, 1, id_unidade_medida, id_hierarquia_produto, id_usuario_cadastro, data_hora_cadastro, "+
 "id_usuario_alteracao, data_hora_alteracao, tipo_variacao, id_tabela_variacao_a, id_tabela_variacao_b, referencia_interna_produto, preco_custo, preco_aquisicao, preco_venda, "+
 "0.00, NULL, id_ncm, tributacao_pis_diferenciada,id_situacao_tributaria_pis,0.00,tributacao_cofins_diferenciada,id_situacao_tributaria_cofins,0.00, 99, "+
 "aliquota_ipi, origem_produto,tipo_item, '', valor_energetico, valor_energetico_percentual,quantidade_carboidratos,quantidade_carboidratos_percentual,quantidade_proteinas,  "+
 "quantidade_proteinas_percentual, quantidade_gorduras_totais,quantidade_gorduras_totais_percentual, quantidade_gorduras_saturadas, quantidade_gorduras_saturadas_percentual, "+
 "quantidade_gorduras_trans,quantidade_gorduras_trans_percentual, quantidade_fibra_alimentar, quantidade_fibra_alimentar_percentual,quantidade_sodio,quantidade_sodio_percentual, "+
-"0, receita, informacao_adicional, NULL, 0.00,0.00, 1 ,'',NULL,0.00,'',0.00000,0.00000,0.00000,0.00000,0.00000, 1,1,0,'',NULL,'','','' FROM Hiper.dbo.produto "+
+"0, receita, informacao_adicional, NULL, 0.00,0.00, 1,'',NULL,0.00,'',0.00000,0.00000,0.00000,0.00000,0.00000, 1,1,0,'',NULL,'','','' FROM Hiper.dbo.produto "+
 "Alter table Lojamix.dbo.produto "+
     "CHECK Constraint ALL "+
 "SET IDENTITY_INSERT Lojamix.dbo.produto OFF";
@@ -268,18 +268,18 @@ namespace ImportMtoH.classes
             ObjConexao.Conectar();
             cmd.ExecuteScalar();
             ObjConexao.Desconectar();
-            InserEndereEsto();
+            UpdaHiera();
         }
-        private void InserEndereEsto()
+        /*private void InserEndereEsto()
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = ObjConexao.ObjetoConexao;
             cmd.CommandText = "SET IDENTITY_INSERT Lojamix.dbo.endereco_estoque ON "+
 "Alter table Lojamix.dbo.endereco_estoque "+
 "NOCHECK Constraint ALL "+
-"INSERT INTO Lojamix.dbo.endereco_estoque(id_endereco_estoque, id_filial, id_local_estoque, codigo_composto, nivel1, nivel2, nivel3, nivel4, nivel5, inativo, descricao) "+
-"SELECT id_endereco_estoque, id_filial, id_local_estoque, 1, nivel, 0, 0, 0,0, 0,'Endereco '  Cast(id_filial AS varchar) "+
-"FROM Hiper.dbo.endereco_estoque WHERE id_endereco_estoque <> 1 "+
+"update Lojamix.dbo.endereco_estoque set id_endereco_estoque=1, id_filial=1, id_local_estoque=1, codigo_composto=1, nivel1=nivel," +
+" nivel2=0, nivel3=0, nivel4=0, nivel5=0, inativo=0, descricao='Endereco ' + Cast(1 AS varchar) " +
+"FROM Hiper.dbo.endereco_estoque AS hiper WHERE hiper.id_endereco_estoque <> 1 "+
 "Alter table Lojamix.dbo.endereco_estoque "+
 "CHECK Constraint ALL "+
 "SET IDENTITY_INSERT Lojamix.dbo.endereco_estoque OFF ";
@@ -287,7 +287,7 @@ namespace ImportMtoH.classes
             cmd.ExecuteScalar();
             ObjConexao.Desconectar();
             UpdaHiera();
-        }
+        }*/
         private void UpdaHiera()
         {
             SqlCommand cmd = new SqlCommand();
@@ -303,11 +303,56 @@ namespace ImportMtoH.classes
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = ObjConexao.ObjetoConexao;
-            cmd.CommandText = "ALTER TABLE LOJAMIX.DBO.CADASTRO_LOGISTICO_PRODUTO  "+
-                "NOCHECK CONSTRAINT ALL "+
-                "INSERT INTO Lojamix.dbo.cadastro_logistico_produto SELECT sigla_unidade_logistica,id_produto,10,multiplicador,0 FROM Hiper.dbo.cadastro_logistico_produto "+
-                "ALTER TABLE LOJAMIX.DBO.CADASTRO_LOGISTICO_PRODUTO "+
+            cmd.CommandText = "ALTER TABLE LOJAMIX.DBO.CADASTRO_LOGISTICO_PRODUTO " +
+                "NOCHECK CONSTRAINT ALL " +
+                "INSERT INTO Lojamix.dbo.cadastro_logistico_produto SELECT sigla_unidade_logistica,id_produto,id_unidade_medida,multiplicador,0 FROM Hiper.dbo.cadastro_logistico_produto " +
+                "ALTER TABLE LOJAMIX.DBO.CADASTRO_LOGISTICO_PRODUTO " +
                 "CHECK CONSTRAINT ALL";
+            ObjConexao.Conectar();
+            cmd.ExecuteScalar();
+            ObjConexao.Desconectar();
+        }
+        public void UpdateMiniCFOP()
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = ObjConexao.ObjetoConexao;
+            cmd.CommandText = "SET IDENTITY_INSERT lojamix.dbo.nop ON " +
+"insert into lojamix.dbo.nop(id_nop, id_cfop, codigo_nop, nome, ativa, tipo_valoracao, id_cme, id_situacao_tributaria_icms, incide_pis, incide_cofins, incide_ipi, id_regra_tributacao, tipo_nop, id_nop_contrapartida_externa, operacao_nop, id_conta, id_situacao_tributaria_pis, id_situacao_tributaria_cofins, id_situacao_tributaria_ipi, aliquota_pis, aliquota_cofins, aliquota_ipi, cod_nat_receita_pis, cod_nat_receita_cofins, movimenta_estoque) " +
+"values(31, 5102, 510203, 'VENDA MERCADORIA ADQUIRIDA ISENTO ICMS', 1, NULL, 501, NULL, 0, 0, 0, 3, 0, NULL, 5, NULL, NULL, NULL, 99, 0.00, 0.00, 0.00, '', '', 1) " +
+"SET IDENTITY_INSERT lojamix.dbo.nop OFF " +
+
+"SET IDENTITY_INSERT lojamix.dbo.nop ON " +
+"insert into lojamix.dbo.nop( " +
+"id_nop, id_cfop, codigo_nop, nome, ativa, tipo_valoracao, id_cme, id_situacao_tributaria_icms, incide_pis, incide_cofins, incide_ipi, id_regra_tributacao, tipo_nop, id_nop_contrapartida_externa, operacao_nop, id_conta, id_situacao_tributaria_pis, id_situacao_tributaria_cofins, id_situacao_tributaria_ipi, aliquota_pis, aliquota_cofins, aliquota_ipi, cod_nat_receita_pis, cod_nat_receita_cofins, movimenta_estoque) " +
+"values(32, 5102, 510204, 'VENDA MERCADORIA ADQUIRIDA NÃO TRIBUTADA', 1, NULL, 501, NULL, 0, 0, 0, 4, 0, NULL, 5, NULL, NULL, NULL, 99, 0.00, 0.00, 0.00, '', '', 1) " +
+"SET IDENTITY_INSERT lojamix.dbo.nop OFF ";
+            ObjConexao.Conectar();
+            cmd.ExecuteScalar();
+            ObjConexao.Desconectar();
+        }
+        public void InserMiniCFOP()
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = ObjConexao.ObjetoConexao;
+            cmd.CommandText = "DECLARE @ISENTO INT " +
+"SET @ISENTO = (SELECT ID_NOP FROM lojamix.dbo.NOP WHERE CODIGO_NOP = 510203) " +
+"UPDATE lojamix.dbo.produto SET id_nop_venda = @isento where id_produto in ( " +
+"select id_produto from hiper.dbo.regra_tributacao_icms_personalizada WHERE id_situacao_tributaria_icms = 40); " +
+
+"DECLARE @NAOTRIBU INT "+
+"SET @NAOTRIBU = (SELECT ID_NOP FROM lojamix.dbo.NOP WHERE CODIGO_NOP = 510204) "+
+"UPDATE lojamix.dbo.produto SET id_nop_venda = @NAOTRIBU where id_produto in ( "+
+"select id_produto from hiper.dbo.regra_tributacao_icms_personalizada WHERE id_situacao_tributaria_icms = 41); "+
+
+"DECLARE @ST INT "+
+"SET @ST = (SELECT ID_NOP FROM lojamix.dbo.NOP WHERE CODIGO_NOP = 540501) "+
+"UPDATE lojamix.dbo.produto SET id_nop_venda = @ST where id_produto in ( "+
+"select id_produto from hiper.dbo.regra_tributacao_icms_personalizada WHERE id_situacao_tributaria_icms = 60); "+
+
+"DECLARE @TRIBUT INT "+
+"SET @TRIBUT = (SELECT ID_NOP FROM lojamix.dbo.NOP WHERE CODIGO_NOP = 510201) "+
+"UPDATE lojamix.dbo.produto SET id_nop_venda = @TRIBUT where id_produto in ( "+
+"select id_produto from hiper.dbo.regra_tributacao_icms_personalizada WHERE id_situacao_tributaria_icms = 00 or id_situacao_tributaria_icms = 0);";
             ObjConexao.Conectar();
             cmd.ExecuteScalar();
             ObjConexao.Desconectar();

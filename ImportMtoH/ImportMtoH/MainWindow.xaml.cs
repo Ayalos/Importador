@@ -105,6 +105,7 @@ namespace ImportMtoH
                 }
                 if(checkCfop.IsChecked == true)
                 {
+                    inserirProd.UpdateCFOP();
                     try
                     {
                         inserirProd.InserCFOP();
@@ -125,7 +126,7 @@ namespace ImportMtoH
                 {
                     try
                     {
-                        InserMiniEnti.InsertPerf();
+                        InserMiniEnti.InsertEnti();
                     }
                     catch(Exception ex)
                     {
@@ -143,6 +144,12 @@ namespace ImportMtoH
                         MessageBox.Show(ex.ToString());
                     }
                 }
+                if(checkMiniCFOP.IsChecked == true)
+                {
+                    InserMiniProd.UpdateMiniCFOP();
+                    InserMiniProd.InserMiniCFOP();
+                }
+
                 MessageBox.Show("Importação do Hiper Mini Concluída");
             }
             ButtonProgressAssist.SetIsIndeterminate(btnImport, false);
@@ -156,6 +163,7 @@ namespace ImportMtoH
                 checkProd.Visibility = Visibility.Visible;
                 checkDoc.Visibility = Visibility.Visible;
                 checkCon.Visibility = Visibility.Visible;
+                checkCfop.Visibility = Visibility.Visible;
                 checkHiperMini.IsEnabled = false;
             }
             else
@@ -165,6 +173,7 @@ namespace ImportMtoH
                 checkProd.Visibility = Visibility.Hidden;
                 checkDoc.Visibility = Visibility.Hidden;
                 checkCon.Visibility = Visibility.Hidden;
+                checkCfop.Visibility = Visibility.Hidden;
                 checkHiperMini.IsEnabled = true;
             }
         }
@@ -174,14 +183,14 @@ namespace ImportMtoH
             if (checkHiperMini.IsChecked == true) {
                 checkMiniEnt.Visibility = Visibility.Visible;
                 checkMiniProd.Visibility = Visibility.Visible;
-
+                checkMiniCFOP.Visibility = Visibility.Visible;
                 checkHiper.IsEnabled = false;
             }
             else
             {
                 checkMiniEnt.Visibility = Visibility.Hidden;
                 checkMiniProd.Visibility = Visibility.Hidden;
-
+                checkMiniCFOP.Visibility = Visibility.Hidden;
                 checkHiper.IsEnabled = true;
 
             }
